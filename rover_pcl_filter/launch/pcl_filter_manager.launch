@@ -1,0 +1,28 @@
+<launch>
+    <!--车体周边过滤-->
+	<arg name="x_min" default="-0.3"/>
+	<arg name="x_max" default="0.3"/>
+	<arg name="y_min" default="-0.3"/>
+	<arg name="y_max" default="0.3"/>
+	<arg name="z_min" default="0.0"/>
+	<arg name="z_max" default="0.4"/>
+	 
+	 <!--整体点云高度过滤-正装-->
+  	<arg name="filter_z_min" default="-0.5"/>
+	<arg name="filter_z_max" default="1.6"/>  
+
+	<param name="x_min" value="$(arg x_min)"/>
+	<param name="x_max" value="$(arg x_max)"/>
+	<param name="y_min" value="$(arg y_min)"/>
+	<param name="y_max" value="$(arg y_max)"/>
+	<param name="z_min" value="$(arg z_min)"/>
+	<param name="z_max" value="$(arg z_max)"/>
+
+	<param name="filter_z_min" value="$(arg filter_z_min)"/>
+	<param name="filter_z_max" value="$(arg filter_z_max)"/>
+
+	<node pkg="pcl_filter" type="pcl_filter_manager" name="pcl_filter_manager" clear_params="true">
+
+	</node>
+
+</launch>

@@ -1,19 +1,17 @@
-/**:
-  ros__parameters:
-    map:
-      map_frame_id: map             # 地图map坐标系
-      lidar_frame_id: front_mid360   # 雷达坐标系
-      base_frame_id: base_footprint # 底盘坐标系
-      resolution: 0.1         # 表示地图的分辨率（单位：米），这里设置为0.1米。每个栅格单元代表0.1米的区域。分辨率越高（值越小），地图越精细，但计算负担更大。
-      expansionCoefficient: 2.0  #障碍物膨胀倍数，建议是整数倍，例如：1.0，2.0，3.0等
-      leaf_size: 0.1    # 降采样参数
-      local_x_l: -1.0   # 过滤范围，x轴负方向
-      local_x_u: 3.0    # 过滤范围，x轴正方向 
-      local_y_l: -1.5
-      local_y_u: 1.5
-      local_z_l: -0.1   
-      local_z_u: 0.2  
-      # local_z_l: -0.5   # 如果雷达吊装，雷达的Z轴正方向朝下，负方向朝上
-      # local_z_u: 0.2    
+map:
+  map_frame_id: map             # 地图map坐标系
+  lidar_frame_id: livox_frame   # 雷达坐标系
+  base_frame_id: base_footprint # 底盘坐标系
+  resolution: 0.1         # 表示地图的分辨率（单位：米），这里设置为0.1米。每个栅格单元代表0.1米的区域。分辨率越高（值越小），地图越精细，但计算负担更大。
+  expansionCoefficient: 2.0  #障碍物膨胀倍数，建议是整数倍，例如：1.0，2.0，3.0等
+  leaf_size: 0.1    # 降采样参数
+  local_x_l: -1.0   # 过滤范围，x轴负方向
+  local_x_u: 3.0    # 过滤范围，x轴正方向 
+  local_y_l: -1.5
+  local_y_u: 1.5
+  local_z_l: -0.1   
+  local_z_u: 0.2  
+  # local_z_l: -0.5   # 如果雷达吊装，雷达的Z轴正方向朝下，负方向朝上
+  # local_z_u: 0.2    
 
 

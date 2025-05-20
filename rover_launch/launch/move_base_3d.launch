@@ -1,0 +1,34 @@
+<launch>
+
+  <!--目标点接收-->
+  <node pkg="waypoint_generator" name="waypoint_generator" type="waypoint_generator">
+    <remap from="~goal" to="/goal"/>
+    <param name="waypoint_type" value="manual-lonely-waypoint"/>
+  </node>
+
+  <!--全局规划器-->
+  <node pkg="global_planner_3d" type="global_planning_node" name="global_planning_node" output="screen" required = "true">
+    <remap from="~waypoints" to="/waypoint_generator/waypoints"/>
+    <remap from="~map" to="/rtabmap/cloud_map"/>
+    <rosparam command="load" file="$(find global_planner_3d)/config/move_base_3d/move_base_global.yaml"/>
+  </node>
+
+  <!--全局规划器-地图处理与障碍物检测-->
+  <node pkg="global_planner_3d" type="global_planning_obs_node" name="global_planning_obs_node" output="screen" required = "true">
+    <remap from="~pointCloud" to="/output_filter"/>
+    <remap from="~map" to="/rtabmap/cloud_map"/>
+    <rosparam command="load" file="$(find global_planner_3d)/config/move_base_3d/move_base_global_obs.yaml"/>
+
+  </node>
+
+  <!--地势分析-->
+  <node pkg="rover_gpr" type="gpr_path" name="gpr_path" output="screen" required="true">
+    <param name="file/cfg_path" type="string" value="$(find rover_gpr)/config/hyperparam.txt"/>
+  </node>
+
+  <!--局部规划器-->
+  <node name="local_planner_3d" pkg="local_planner_3d" type="local_planner_node.py" output="screen" >
+     
+      <rosparam command="load" file="$(find global_planner_3d)/config/move_base_3d/move_base_local.yaml"/>
+  </node>
+</launch>

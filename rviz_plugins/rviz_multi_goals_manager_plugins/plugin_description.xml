@@ -1,0 +1,7 @@
+<library path="lib/librviz_multi_goals_manager_plugins">
+    <class name="rviz_multi_goals_manager_plugins/MultiNaviGoalsPanel"
+           type="rviz_multi_goals_manager_plugins::MultiNaviGoalsPanel"
+           base_class_type="rviz::Panel">
+        <description>A panel widget allowing multi-goals navigation.</description>
+    </class>
+</library>

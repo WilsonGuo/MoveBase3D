@@ -1,29 +1,50 @@
 <?xml version="1.0"?>
-<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
-<package format="3">
+<package format="2">
   <name>local_planner_3d</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="liu@todo.todo">liu</maintainer>
-  <license>TODO: License declaration</license>
+  <version>0.0.1</version>
+  <description>The local_planner_3d package provides a 3D local planning implementation for mobile robots.</description>
+  
+  <maintainer email="abc@todo.todo">zli</maintainer>
+  <license>BSD</license>
 
-  <depend>python3-numpy</depend>
-  <depend>python3-scipy</depend>
-  <depend>python3-matplotlib</depend>
-  <depend>rclpy</depend>
-  <depend>tf2_ros</depend>
-  <depend>geometry_msgs</depend>
-  <depend>std_msgs</depend>
-  <depend>visualization_msgs</depend>
-  <depend>sensor_msgs</depend>
-  <depend>rover_msgs</depend>
+  <!-- 构建工具依赖 -->
+  <buildtool_depend>catkin</buildtool_depend>
 
-  <test_depend>ament_copyright</test_depend>
-  <test_depend>ament_flake8</test_depend>
-  <test_depend>ament_pep257</test_depend>
-  <test_depend>python3-pytest</test_depend>
+  <!-- 构建依赖 -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <build_depend>rover_msgs</build_depend>
+  <build_depend>Eigen3</build_depend>
+
+  <!-- 运行时依赖 -->
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>visualization_msgs</exec_depend>
+  <exec_depend>rover_msgs</exec_depend>
+  <exec_depend>Eigen3</exec_depend>
+
+  <!-- 导出依赖 -->
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>nav_msgs</build_export_depend>
+  <build_export_depend>tf</build_export_depend>
+  <build_export_depend>visualization_msgs</build_export_depend>
+  <build_export_depend>rover_msgs</build_export_depend>
+  <build_export_depend>Eigen3</build_export_depend>
 
   <export>
-    <build_type>ament_python</build_type>
+    <!-- 可以添加其他工具所需的额外信息 -->
   </export>
 </package>
+

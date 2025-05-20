@@ -1,7 +1,0 @@
-<library path="rviz_multi_goals_manager_plugins">
-  <class name="rviz_multi_goals_manager/MultiNaviGoals"
-         type="rviz_multi_goals_manager_plugins::MultiNaviGoalsPanel"
-         base_class_type="rviz_common::Panel">
-    <description>Multi-point Navigation Goals Management Panel</description>
-  </class>
-</library>

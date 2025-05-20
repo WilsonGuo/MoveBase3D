@@ -1,0 +1,7 @@
+<launch>
+  <arg name="model" default="burger" doc="model type [burger, waffle, waffle_pi]"/>
+  <param name="model" value="$(arg model)"/>
+
+  <node pkg="rover_teleop" type="teleop_key" name="teleop_keyboard"  output="screen">
+  </node>
+</launch>

@@ -1,5 +1,5 @@
-# ROS@_MoveBase3D
-- 本代码基于ros源代码进行向ros2-humble的迭代升级
+# ROS
+- 本代码基于MoveBase3D ros源代码进行向ros2-humble的迭代升级
 
 # 迭代开发者： 哈尔滨工业大学（威海） Jinbo Liu
 

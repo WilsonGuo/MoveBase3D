@@ -5,7 +5,8 @@
  *  Date: 2021-7-24
  */
 
-#include "execution_classes.h"
+#include "execution_classes.hpp"
+#include "string.h"
 
 using namespace std;
 using namespace Eigen;
@@ -72,7 +73,7 @@ namespace EXECUTION
             center += pt;
         center /= pt_num;
         MatrixXd A(pt_num, 3);
-        for (size_t i = 0; i < pt_num; i++)
+        for (int i = 0; i < pt_num; i++)
             A.row(i) = plane_pts[i] - center;
 
         JacobiSVD<MatrixXd> svd(A, ComputeFullV);
@@ -80,7 +81,7 @@ namespace EXECUTION
 
         // calculate indicator1:flatness
         float flatness = 0;
-        for (size_t i = 0; i < pt_num; i++)
+        for (int i = 0; i < pt_num; i++)
             flatness += powf(normal_vector.dot(A.row(i)), 4);
         flatness /= (1 + pt_num);
 
@@ -174,13 +175,14 @@ namespace EXECUTION
             }
         }
         has_map_ = true;
+        // RCLCPP_INFO(rclcpp::get_logger("node"),"has_map_ = true");
     }
 
     void World::initGridMap(const pcl::PointCloud<pcl::PointXYZ> &cloud)
     {
         if (cloud.points.empty())
         {
-            ROS_ERROR("Can not initialize the map with an empty point cloud!");
+            RCLCPP_ERROR(rclcpp::get_logger("node"),"Can not initialize the map with an empty point cloud!");
             return;
         }
         clearMap();
@@ -214,6 +216,7 @@ namespace EXECUTION
             }
         }
         has_map_ = true;
+        // RCLCPP_INFO(rclcpp::get_logger("node"),"has_map_ = true");
     }
 
     /**
@@ -237,7 +240,7 @@ namespace EXECUTION
         bool isfree = true;
 
         // 通过 线性插值 的方式生成路径上的检查点
-        for (size_t i = 0; i <= step; i++)
+        for (int i = 0; i <= step; i++)
         {
             Vector3d check_center = node_start->position_ + diff_pos * i / (double)step; // 路径上第 i 个检查点的位置
 

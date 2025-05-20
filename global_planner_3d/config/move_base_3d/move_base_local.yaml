@@ -1,22 +1,24 @@
-map_frame_id: /map
-base_frame_id: /base_footprint
-replan_period: 0.1              # 路径规划周期：0.1即：10hz
-cmd_period: 0.1                 # cmd_vel发布周期
-state_period: 0.1               # 当前位姿查询周期
-reached_position_tolerance: 0.2 # 到达目标点的位置容差
-reached_yaw_tolerance: 0.15     # 到达目标点的角度容差
-goal_min_angular_speed: -0.4    # 到达目标点后，调整角度的最小角速度值
-goal_max_angular_speed: 0.4     # 到达目标点后，调整角度的最大角速度值
-goal_angular_gain: 2.0          # 到达目标点后，调整角度的角速度的增益值，避免过冲所造成的的左右震荡
+/**:
+  ros__parameters:
+    map_frame_id: map
+    base_frame_id: base_footprint
+    replan_period: 0.1              # 路径规划周期：0.1即：10hz
+    cmd_period: 0.1                 # cmd_vel发布周期
+    state_period: 0.1               # 当前位姿查询周期
+    reached_position_tolerance: 0.2 # 到达目标点的位置容差
+    reached_yaw_tolerance: 0.15     # 到达目标点的角度容差
+    goal_min_angular_speed: -0.4    # 到达目标点后，调整角度的最小角速度值
+    goal_max_angular_speed: 0.4     # 到达目标点后，调整角度的最大角速度值
+    goal_angular_gain: 2.0          # 到达目标点后，调整角度的角速度的增益值，避免过冲所造成的的左右震荡
 
-dwa_lookhead_step: 0.2        # 向前模拟步长
-global_path_step: 20          # 全局路径采样步长     
-predict_time: 2.0             # 轨迹预测时间 (s)
-goal_weight: 1.0              # 朝向目标的权重
-speed_weight: 0.5             # 保持速度的权重
-obstacle_weight: 1.9          # 避障的权重
-safe_distance: 0.3            # 障碍物安全距离 (m)
-v_min: -0.2                   # 线速度最小值 (m/s)
-v_max: 0.6                    # 线速度最大值 (m/s)
-omega_min: -1.0               # 角速度最小值 (rad/s)
-omega_max: 1.0                # 角速度最大值 (rad/s)
+    dwa_lookhead_step: 0.2        # 向前模拟步长
+    global_path_step: 20          # 全局路径采样步长     
+    predict_time: 2.0             # 轨迹预测时间 (s)
+    goal_weight: 1.0              # 朝向目标的权重
+    speed_weight: 0.5             # 保持速度的权重
+    obstacle_weight: 1.9          # 避障的权重
+    safe_distance: 0.3            # 障碍物安全距离 (m)
+    v_min: -0.2                   # 线速度最小值 (m/s)
+    v_max: 0.6                    # 线速度最大值 (m/s)
+    omega_min: -1.0               # 角速度最小值 (rad/s)
+    omega_max: 1.0                # 角速度最大值 (rad/s)

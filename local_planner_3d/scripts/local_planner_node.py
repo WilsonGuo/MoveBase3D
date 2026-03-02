@@ -191,16 +191,42 @@ class Local_Planner():
             (last_state[0] - goal_x)**2 + (last_state[1] - goal_y)**2)
         return -dist_to_goal  # 距离越近，得分越高
 
-    def evaluate_obstacle_cost(self,trajectory, obstacles, safe_distance):
+    def evaluate_obstacle_cost(self, trajectory, obstacles, safe_distance):
+        import numpy as np
     
-        trajectory = np.array(trajectory)[:, :2]
-        obstacles = np.array(obstacles)
+        # ---- trajectory: 强制变成 (T, >=2) ----
+        trajectory = np.asarray(trajectory, dtype=float)
+        trajectory = np.atleast_2d(trajectory)          # (2,) -> (1,2)
+        if trajectory.shape[1] < 2:
+            # 轨迹点连 xy 都不够，直接认为不可用
+            return float("inf")
+        trajectory = trajectory[:, :2]                  # 只取 xy
+    
+        # ---- obstacles: 强制变成 (M, 2) ----
+        if obstacles is None:
+            return 0.0  # 没有障碍物数据：代价为0（你也可以返回很小/很大，看策略）
+        obstacles = np.asarray(obstacles, dtype=float)
+    
+        if obstacles.size == 0:
+            return 0.0  # 空集合：无障碍物
+    
+        obstacles = np.atleast_2d(obstacles)            # (2,) -> (1,2)
+        if obstacles.shape[1] < 2:
+            return 0.0  # 障碍物维度不对，当作无障碍物（或 raise）
+    
+        obstacles = obstacles[:, :2]                    # 只取 xy
+    
+        # ---- 距离矩阵 (T, M) ----
         dists = np.linalg.norm(trajectory[:, None, :] - obstacles[None, :, :], axis=2)
+    
         close_dists = dists[dists < safe_distance]
+        if close_dists.size == 0:
+            return 0.0  # 没有进入安全距离的点
+    
         epsilon = 1e-6
-        weights = 1 / (close_dists ** 2 + epsilon)
-        cost = np.sum(weights * (safe_distance - close_dists) ** 2)
-        return cost
+        weights = 1.0 / (close_dists**2 + epsilon)
+        cost = np.sum(weights * (safe_distance - close_dists)**2)
+        return float(cost)
 
     def localPlan(self,cur_position, goal_position, obstacles, cur_v=0.0, cur_omega=0.0):
 
